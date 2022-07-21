@@ -5,7 +5,13 @@ console.table(contenuPanier);
 if (contenuPanier == null){
     alert('Le panier est vide');
 } else {
+     unloadBasket();
+/* je calcul le prix total */
+    calculTotalPrice();
+}
+
 /* je récupére les données de mon panier pour l'affichage */
+function unloadBasket() {
     let contenuPanier_json = JSON.parse(localStorage.getItem('Panier'));
     console.table('2,recupPanier: '+contenuPanier_json.length);
     for (let i=0; i < contenuPanier_json.length; i++) {
@@ -15,9 +21,7 @@ if (contenuPanier == null){
         console.log('3, '+panierId+' - '+panierCouleur+' - '+panierQuantite);
         /* je vais rechercher les datas complémenaires */
         affichePanier(panierId, panierCouleur, panierQuantite);
-    }
-    /* je calcul le prix total */
-    calculTotalPrice();    
+    }    
 }
 
 function affichePanier(panierId, panierCouleur, panierQuantite) {
