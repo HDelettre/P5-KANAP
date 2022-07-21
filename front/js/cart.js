@@ -149,11 +149,11 @@ formulaireCheck();
 /* Validation de la commande */
 function boutonCommander() {
     document.getElementById('order').addEventListener('click', function() {
-        if (document.querySelector("#firstName").value != '' &&
-            document.querySelector("#lastName").value != '' &&
-            document.querySelector("#address").value != '' &&
-            document.querySelector("#city").value != '' &&
-            document.querySelector("#email").value != '' ) {
+        if (document.querySelector("#firstNameErrorMsg").value == '' &&
+            document.querySelector("#lastNameErrorMsg").value == '' &&
+            document.querySelector("#addressErrorMsg").value == '' &&
+            document.querySelector("#cityErrorMsg").value == '' &&
+            document.querySelector("#emailErrorMsg").value == '' ) {
             validationCommande();
         } else {
             alert('Veuillez compléter le formulaire');
