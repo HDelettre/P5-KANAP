@@ -119,7 +119,7 @@ function formulaireCheck() {
     document.getElementById('address').addEventListener('change', function() {
         let chaineATester = document.getElementById('address');
         let chaineATesterError = document.getElementById('addressErrorMsg');
-        let formatChaine = /\d{1,3}.[a-zA-Z-éèàç]/g;
+        let formatChaine = /\d{1,3}.[a-zA-Z-éèàç,]/g;
         let errorMsg = "Le champs doit contenir 1 à 3 chiffres + lettres + tiret, é, è, ç et à"
         checkFormulaire(chaineATester, chaineATesterError, formatChaine, errorMsg);
     });
