@@ -156,6 +156,8 @@ function boutonCommander() {
             document.querySelector("#emailErrorMsg").value == '' &&
             localStorage.getItem('Panier') != 'null') {
             validationCommande();
+        } else if (localStorage.getItem('Panier') != 'null') {
+            alert('Le panier est vide');
         } else {
             alert('Veuillez compléter le formulaire');
         }
