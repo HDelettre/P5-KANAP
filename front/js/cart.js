@@ -157,9 +157,9 @@ function boutonCommander() {
             localStorage.getItem('Panier') != 'null') {
             validationCommande();
         } else if (localStorage.getItem('Panier') != 'null') {
-            alert('Le panier est vide');
+            alert('Le panier est vide, vous ne pouvez pas passer de commande !');
         } else {
-            alert('Veuillez compléter le formulaire');
+            alert('Veuillez compléter le formulaire avant de valider votre commande !');
         }
     })
 }
