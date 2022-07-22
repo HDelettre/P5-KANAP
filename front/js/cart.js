@@ -154,9 +154,9 @@ function boutonCommander() {
             document.querySelector("#addressErrorMsg").value == '' &&
             document.querySelector("#cityErrorMsg").value == '' &&
             document.querySelector("#emailErrorMsg").value == '' &&
-            localStorage.getItem('Panier') != 'null') {
+            localStorage.getItem('Panier') != null) {
             validationCommande();
-        } else if (localStorage.getItem('Panier') != 'null') {
+        } else if (localStorage.getItem('Panier') == null) {
             alert('Le panier est vide, vous ne pouvez pas passer de commande !');
         } else {
             alert('Veuillez compléter le formulaire avant de valider votre commande !');

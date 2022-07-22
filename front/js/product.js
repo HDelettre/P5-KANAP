@@ -57,9 +57,11 @@ function affichageProduit(produitImage, produitImageTexte, produitNom, produitDe
 }
 /* function test si couleur et quantité défini */
 function testPanier() {
+    document.getElementById('quantity').style.backgroundColor='white';
+    document.getElementById('colors').style.backgroundColor='white';
     let commandeQuantity=document.getElementById('quantity').value;
     let commandeCouleur=document.getElementById('colors').value;
-    if(commandeQuantity==='0'){
+    if(commandeQuantity === '0') {
         document.getElementById('quantity').style.backgroundColor='red';
     }
     else if(commandeCouleur===''){
