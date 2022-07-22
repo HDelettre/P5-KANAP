@@ -153,7 +153,8 @@ function boutonCommander() {
             document.querySelector("#lastNameErrorMsg").value == '' &&
             document.querySelector("#addressErrorMsg").value == '' &&
             document.querySelector("#cityErrorMsg").value == '' &&
-            document.querySelector("#emailErrorMsg").value == '' ) {
+            document.querySelector("#emailErrorMsg").value == '' &&
+            localStorage.getItem('Panier') != 'null') {
             validationCommande();
         } else {
             alert('Veuillez compléter le formulaire');
