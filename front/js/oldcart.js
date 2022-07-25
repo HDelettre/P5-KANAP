@@ -2,17 +2,21 @@
 let contenuPanier = localStorage.getItem('Panier');
 /* je vérifie si le panier existe */
 if (contenuPanier == null){
-    alert('Le panier est vide');
+    alert('Le panier est vide,vous devez sélectionner au moins un article.');
+    document.location.href = 'index.html';
 } else {
-     unloadBasket();
+    /*je récupére les datas de mon panier */
+    let contenuPanier_json = JSON.parse(localStorage.getItem('Panier'));
+    /* pour chaque article de mon panier je récupére les datas de l'API */
+    
 /* je calcul le prix total */
     calculTotalPrice();
 }
 
 /* je récupére les données de mon panier pour l'affichage */
-function unloadBasket() {
+function loadBasket() {
     let contenuPanier_json = JSON.parse(localStorage.getItem('Panier'));
-    console.table('2,recupPanier: '+contenuPanier_json.length);
+    let contenuPanier_Array = [];
     for (let i=0; i < contenuPanier_json.length; i++) {
         let panierId = contenuPanier_json[i].id;
         let panierCouleur = contenuPanier_json[i].couleur;
@@ -149,19 +153,7 @@ formulaireCheck();
 function boutonCommander() {
     console.log('contenu panier: ' +JSON.parse(localStorage.getItem("Panier")).length);
     document.getElementById('order').addEventListener('click', function(event) {
-        event.preventDefault();
-        test();
-        console.log('testvalue: ' + testValue);
-        if (testValue == 0) {
-            console.log('je valide la commande')
-            validationCommande();
-        } else if (testValue = -1) {
-            alert('Le panier est vide, vous ne pouvez pas passer de commande !');
-        } else {
-            alert('Veuillez compléter le formulaire avant de valider votre commande !');
-        }
-        
-        /*if (document.querySelector("#firstNameErrorMsg").value == '' &&
+        if (document.querySelector("#firstNameErrorMsg").value == '' &&
             document.querySelector("#lastNameErrorMsg").value == '' &&
             document.querySelector("#addressErrorMsg").value == '' &&
             document.querySelector("#cityErrorMsg").value == '' &&
@@ -176,7 +168,7 @@ function boutonCommander() {
             } else {
                 alert('Veuillez compléter le formulaire avant de valider votre commande !');
             }
-        }*/
+        }
     })
 }
 boutonCommander();
@@ -297,17 +289,18 @@ function test() {
         }
     }
     console.log('tab: ' + tab);
+}
+test();
 
+function test2() {
     let testValue = 0;
     for (let i=0; i < tab.length; i++) {
-        let frt = document.getElementById(tab[i]);
-        if (frt != null) {
+        let frt = document.getElementsByName(tab[i]);
+        console.log(tab[i] + ' frt: ' + frt.length);
+        if (frt.length != 0) {
             testValue ++
         }
     }
     console.log('testvalue= ' + testValue)
-    if (JSON.parse(localStorage.getItem("Panier")).length == 0) {
-        testValue = -1;
-    }
-    return(testValue);
 }
+test2();

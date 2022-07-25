@@ -57,15 +57,15 @@ function affichageProduit(produitImage, produitImageTexte, produitNom, produitDe
 }
 /* function test si couleur et quantité défini */
 function testPanier() {
-    document.getElementById('quantity').style.backgroundColor='white';
-    document.getElementById('colors').style.backgroundColor='white';
     let commandeQuantity=document.getElementById('quantity').value;
     let commandeCouleur=document.getElementById('colors').value;
     if(commandeQuantity === '0') {
-        document.getElementById('quantity').style.backgroundColor='red';
+        /*document.getElementById('quantity').style.backgroundColor = 'red';*/
+        alert('Vous devez définir une quantité.');
     }
     else if(commandeCouleur===''){
-        document.getElementById('colors').style.backgroundColor='red';
+        /*document.getElementById('colors').style.backgroundColor = 'red';*/
+        alert('Vous devez définir une couleur.');
     }
     else {
         ajoutPanier(commandeCouleur, commandeQuantity);
