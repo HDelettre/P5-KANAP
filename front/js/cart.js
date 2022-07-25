@@ -12,12 +12,10 @@ if (contenuPanier == null){
 /* je récupére les données de mon panier pour l'affichage */
 function unloadBasket() {
     let contenuPanier_json = JSON.parse(localStorage.getItem('Panier'));
-    console.table('2,recupPanier: '+contenuPanier_json.length);
     for (let i=0; i < contenuPanier_json.length; i++) {
         let panierId = contenuPanier_json[i].id;
         let panierCouleur = contenuPanier_json[i].couleur;
         let panierQuantite = contenuPanier_json[i].quantite;
-        console.log('3, '+panierId+' - '+panierCouleur+' - '+panierQuantite);
         /* je vais rechercher les datas complémenaires */
         affichePanier(panierId, panierCouleur, panierQuantite);
     }    
@@ -146,13 +144,11 @@ function formulaireCheck() {
 formulaireCheck();
 
 /* Validation de la commande */
-
 function boutonCommander() {
     console.log('contenu panier: ' +JSON.parse(localStorage.getItem("Panier")).length);
     document.getElementById('order').addEventListener('click', function(event) {
         event.preventDefault();
         testValidationCommande();
-        console.log('testvalue: ' + test());
         if (testValidationCommande() == 0) {
             console.log('je valide la commande')
             validationCommande();
@@ -177,7 +173,6 @@ function calculTotalPrice(unitPrice) {
     for (let i=0; i < totalArticles; i++) {
         let panierId =dansLePanier_json[i].id;
         let panierQuantite =dansLePanier_json[i].quantite;
-        console.log('4,1 '+panierId,'/'+panierQuantite+'-'+unitPrice);
         let urlProduct = `http://localhost:3000/api/products/${panierId}`;
         fetch(urlProduct)
         .then((response) =>response.json())
@@ -185,7 +180,6 @@ function calculTotalPrice(unitPrice) {
             let unitPrice = produit.price;
             let articlePrice = parseInt(panierQuantite) * parseInt(unitPrice);
             totalPrice += articlePrice;
-            console.log('total1: '+totalPrice);
             document.getElementById('totalPrice').innerHTML = totalPrice;
         })
     }
@@ -238,6 +232,7 @@ function checkFormulaire(chaineATester, chaineATesterError, formatChaine, errorM
     }
 }
 
+/* Validation Commande vers APi */
 function validationCommande() {
     let contact = {
         'firstName': document.getElementById('firstName').value,
