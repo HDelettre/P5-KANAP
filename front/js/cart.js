@@ -155,7 +155,7 @@ function boutonCommander() {
         console.log('testvalue: ' + test());
         if (testValidationCommande() == 0) {
             console.log('je valide la commande')
-            /*validationCommande();*/
+            validationCommande();
         } else if (testValidationCommande() == -1) {
             alert('Le panier est vide, vous ne pouvez pas passer de commande !');
         } else {
