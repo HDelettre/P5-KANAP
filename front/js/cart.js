@@ -152,10 +152,10 @@ function boutonCommander() {
         event.preventDefault();
         test();
         console.log('testvalue: ' + testValue);
-        if (testValue == 0) {
+        if (test == 0) {
             console.log('je valide la commande')
             validationCommande();
-        } else if (testValue = -1) {
+        } else if (test = -1) {
             alert('Le panier est vide, vous ne pouvez pas passer de commande !');
         } else {
             alert('Veuillez compléter le formulaire avant de valider votre commande !');
