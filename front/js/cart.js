@@ -146,44 +146,24 @@ function formulaireCheck() {
 formulaireCheck();
 
 /* Validation de la commande */
+
 function boutonCommander() {
     console.log('contenu panier: ' +JSON.parse(localStorage.getItem("Panier")).length);
     document.getElementById('order').addEventListener('click', function(event) {
         event.preventDefault();
-        test();
-        console.log('testvalue: ' + testValue);
-        if (test == 0) {
+        testValidationCommande();
+        console.log('testvalue: ' + test());
+        if (testValidationCommande() == 0) {
             console.log('je valide la commande')
-            validationCommande();
-        } else if (test = -1) {
+            /*validationCommande();*/
+        } else if (testValidationCommande() == -1) {
             alert('Le panier est vide, vous ne pouvez pas passer de commande !');
         } else {
             alert('Veuillez compléter le formulaire avant de valider votre commande !');
         }
-        
-        /*if (document.querySelector("#firstNameErrorMsg").value == '' &&
-            document.querySelector("#lastNameErrorMsg").value == '' &&
-            document.querySelector("#addressErrorMsg").value == '' &&
-            document.querySelector("#cityErrorMsg").value == '' &&
-            document.querySelector("#emailErrorMsg").value == '' &&
-            JSON.parse(localStorage.getItem("Panier")).length != 0) {
-            console.log('je valide la commande')
-                validationCommande();
-        } else {
-            event.preventDefault();
-            if (JSON.parse(localStorage.getItem("Panier")).length == 0) {
-                alert('Le panier est vide, vous ne pouvez pas passer de commande !');
-            } else {
-                alert('Veuillez compléter le formulaire avant de valider votre commande !');
-            }
-        }*/
     })
 }
 boutonCommander();
-
-function acceptationCommande() {
-
-}
 
 /* Calcul du prix total et du nombre d'articles */
 function calculTotalPrice(unitPrice) {
@@ -287,25 +267,22 @@ function validationCommande() {
         document.location.href = 'confirmation.html?id=' + data.orderId;
     })
 }
-
-let tab = [];
-function test() {
+/* test formulaire et quantite correct */
+function testValidationCommande() {
+    let testValue = 0;
+    let tab = [];
     let inputs = document.getElementsByTagName('input');
     for (let i=0; i < inputs.length; i++) {
-        if (inputs[i].name != '') {
+        if (inputs[i].name != 'itemQuantity' && inputs[i].name !='') {
             tab.push(inputs[i].name + 'ErrorMsg');
         }
     }
-    console.log('tab: ' + tab);
-
-    let testValue = 0;
     for (let i=0; i < tab.length; i++) {
-        let frt = document.getElementById(tab[i]);
-        if (frt != null) {
+        let errorMsgCount = document.getElementById(tab[i]);
+        if (errorMsgCount.hidden = false) {
             testValue ++
         }
     }
-    console.log('testvalue= ' + testValue)
     if (JSON.parse(localStorage.getItem("Panier")).length == 0) {
         testValue = -1;
     }
