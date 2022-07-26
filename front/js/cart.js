@@ -145,14 +145,13 @@ formulaireCheck();
 
 /* Validation de la commande */
 function boutonCommander() {
-    console.log('contenu panier: ' +JSON.parse(localStorage.getItem("Panier")).length);
+    console.log('contenu panier: ' + JSON.parse(localStorage.getItem("Panier")).length);
     document.getElementById('order').addEventListener('click', function(event) {
         event.preventDefault();
         testValidationCommande();
-        console.log('testvalidation' + testValidationCommande());
         if (testValidationCommande() == 0) {
             console.log('je valide la commande')
-            /*validationCommande();*/
+            validationCommande();
         } else if (testValidationCommande() == -1) {
             alert('Le panier est vide, vous ne pouvez pas passer de commande !');
         } else {
@@ -285,6 +284,5 @@ function testValidationCommande() {
     if (JSON.parse(localStorage.getItem("Panier")).length == 0) {
         testValue = -1;
     }
-    console.log(testValue);
     return(testValue);
 }
