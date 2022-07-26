@@ -149,9 +149,10 @@ function boutonCommander() {
     document.getElementById('order').addEventListener('click', function(event) {
         event.preventDefault();
         testValidationCommande();
+        console.log('testvalidation' + testValidationCommande());
         if (testValidationCommande() == 0) {
             console.log('je valide la commande')
-            validationCommande();
+            /*validationCommande();*/
         } else if (testValidationCommande() == -1) {
             alert('Le panier est vide, vous ne pouvez pas passer de commande !');
         } else {
@@ -265,21 +266,25 @@ function validationCommande() {
 /* test formulaire et quantite correct */
 function testValidationCommande() {
     let testValue = 0;
-    let tab = [];
+    let tabInputs = [];
+    let tabError = [];
     let inputs = document.getElementsByTagName('input');
     for (let i=0; i < inputs.length; i++) {
         if (inputs[i].name != 'itemQuantity' && inputs[i].name !='') {
-            tab.push(inputs[i].name + 'ErrorMsg');
+            tabInputs.push(inputs[i].name);
+            tabError.push(inputs[i].name + 'ErrorMsg');
         }
     }
-    for (let i=0; i < tab.length; i++) {
-        let errorMsgCount = document.getElementById(tab[i]);
-        if (errorMsgCount.hidden = false) {
+    for (let i=0; i < tabInputs.length; i++) {
+        let inputCount = document.getElementById(tabInputs[i]);
+        let errorMsgCount = document.getElementById(tabError[i]);
+        if (errorMsgCount.hidden == false || inputCount == '') {
             testValue ++
         }
     }
     if (JSON.parse(localStorage.getItem("Panier")).length == 0) {
         testValue = -1;
     }
+    console.log(testValue);
     return(testValue);
 }
